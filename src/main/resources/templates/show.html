@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: header" />
+<body>
+<div th:replace="base :: navlinks" />
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="text-dark display-3 text-center title">Daniel's Job Posting - Details</h1>
+        Title: <span th:text="${job.title}"></span><br />
+        Description: <span th:text="${job.description}"></span><br />
+        Author: <span th:text="${job.author}"></span><br />
+        Phone: <span th:text="${job.phone}"></span><br />
+        Posted Date: <span th:text="${#dates.format(job.postedDate, 'dd-MMM-yyyy')}"></span><br />
+        <a class="btn btn-primary btn-lg" href="/">List all jobs</a>
+        <a class="btn btn-danger btn-lg" href="/delete">Delete this job</a>
+    </div>
+</div>
+<div th:replace="base :: footer" />
+<div th:replace="base :: scripts" />
+
+</body>
+</html>

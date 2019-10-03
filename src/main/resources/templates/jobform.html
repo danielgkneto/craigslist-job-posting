@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: header" />
+<body>
+<div th:replace="base :: navlinks" />
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="text-dark display-3 text-center title">Daniel's Job Posting - Add/Update a Job</h1>
+        <form th:action="@{/processjob}" th:object="${job}" method="post">
+            <input type="hidden" th:field="*{id}" />
+<!--                            <input type="hidden" th:field="*{postedDate}" />-->
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" id="title" type="text" placeholder="Title" th:field="*{title}" />
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input class="form-control" id="description" type="text" placeholder="Description" th:field="*{description}" />
+            </div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input class="form-control" id="author" type="text" placeholder="Author" th:field="*{author}" />
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input class="form-control" id="phone" type="text" placeholder="Phone" th:field="*{phone}" />
+            </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input th:value="${#dates.format(job.postedDate, 'yyyy-MM-dd')}" class="form-control" id="date" type="date" name="date" readonly/>
+            </div>
+            <input class="btn btn-primary btn-lg" type="submit" onclick="confirmation()" value="Submit">
+        </form>
+    </div>
+</div>
+<div th:replace="base :: footer" />
+<div th:replace="base :: scripts" />
+
+</body>
+</html>

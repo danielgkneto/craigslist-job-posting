@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: header" />
+<body>
+<div th:replace="base :: navlinks" />
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="text-dark display-3 text-center title">Daniel's Job Posting</h1>
+        <table th:if="${!jobs.isEmpty()}">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>Phone</th>
+                <th>Posted Date</th>
+                <td>Actions</td>
+            </tr>
+            <tr th:each="job : ${jobs}">
+                <td th:text="${job.title}"></td>
+                <td th:text="${job.description}"></td>
+                <td th:text="${job.author}"></td>
+                <td th:text="${job.phone}"></td>
+                <td th:text="${#dates.format(job.postedDate, 'dd-MMM-yyyy')}"></td>
+                <td>
+                    <a th:href="@{/update/{id}(id=${job.id})}">Update</a>
+                    <a th:href="@{/detail/{id}(id=${job.id})}">Details</a>
+                    <a th:href="@{/delete/{id}(id=${job.id})}">Delete</a>
+                </td></tr>
+        </table>
+        <a class="btn btn-primary btn-lg" href="/add">Add a Job</a>
+    </div>
+</div>
+<div th:replace="base :: footer" />
+<div th:replace="base :: scripts" />
+
+</body>
+</html>
