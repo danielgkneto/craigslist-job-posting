@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -31,6 +32,11 @@ public class HomeController {
     public String jobList(Model model){
         model.addAttribute("jobs", jobRepository.findAll());
         return "index";
+    }
+
+    @RequestMapping("/docs")
+    public String docs(Model model){
+        return "docs";
     }
 
     @GetMapping("/add")
@@ -81,7 +87,13 @@ public class HomeController {
 
     @PostMapping("/processsearch")
     public String searchResult(Model model,@RequestParam(name="search") String search) {
-        model.addAttribute("jobs", jobRepository.findByTitleContainingIgnoreCase(search));
+        String[] keywords = search.split(" ");
+        ArrayList<Job> jobs = new ArrayList<Job>();
+
+        for (int i = 0; i < keywords.length; i++) {
+            jobs.addAll(jobRepository.findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(keywords[i], keywords[i]));
+        }
+        model.addAttribute("jobs", jobs);
         return "index";
     }
 }

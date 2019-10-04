@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.ArrayList;
 
 public interface JobRepository extends CrudRepository<Job, Long> {
-    ArrayList<Job> findByTitleContainingIgnoreCase(String title);
+    ArrayList<Job> findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(String title, String author);
 }
