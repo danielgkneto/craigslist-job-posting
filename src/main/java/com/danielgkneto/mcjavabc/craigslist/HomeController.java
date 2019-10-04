@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -88,7 +90,7 @@ public class HomeController {
     @PostMapping("/processsearch")
     public String searchResult(Model model,@RequestParam(name="search") String search) {
         String[] keywords = search.split(" ");
-        ArrayList<Job> jobs = new ArrayList<Job>();
+        Set<Job> jobs = new HashSet<Job>();
 
         for (int i = 0; i < keywords.length; i++) {
             jobs.addAll(jobRepository.findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(keywords[i], keywords[i]));
