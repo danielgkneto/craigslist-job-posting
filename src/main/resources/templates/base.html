@@ -34,9 +34,9 @@
             height: 60px;
         }
         .fa {
-            padding: 10px;
-            font-size: 30px;
-            width: 50px;
+            padding: 2px;
+            font-size: 16px;
+            /*width: 50px;*/
             text-align: center;
             text-decoration: none;
         }
@@ -69,7 +69,10 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/">Add a Job</a>
+                <a class="nav-link" href="/add">Add a Job</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/f">Magic!</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" th:action="@{/processsearch}" method="post">

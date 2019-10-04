@@ -15,11 +15,24 @@ public class HomeController {
     @Autowired
     JobRepository jobRepository;
 
+    @RequestMapping("/f")
+    public String fillTable() {
+        jobRepository.save(new Job("Java Developer", "A Java developer is responsible for many duties throughout the development lifecycle of applications, from concept and design right through to testing.", "Daniel", "(111) 111-1111"));
+        jobRepository.save(new Job("Network Technician", "A Network Technician is responsible for many duties throughout the development lifecycle of applications, from concept and design right through to testing.", "Daniel", "(111) 111-1111"));
+        jobRepository.save(new Job("C# Developer", "A C# developer is responsible for many duties throughout the development lifecycle of applications, from concept and design right through to testing.", "Someone Else", "(333) 333-3333"));
+        jobRepository.save(new Job("Project Manager", "A Project Manager is responsible for many duties throughout the development lifecycle of applications, from concept and design right through to testing.", "Someone Else", "(333) 333-3333"));
+        jobRepository.save(new Job("Babysitter", "A Babysitter is responsible for many duties throughout the development lifecycle of applications, from concept and design right through to testing.", "Super Nanny", "(888) 888-8888"));
+        jobRepository.save(new Job("Cooker", "A Cooker is responsible for many duties throughout the development lifecycle of applications, from concept and design right through to testing.", "James Oliver", "(999) 999-9999"));
+
+        return "redirect:/";
+    }
+
     @RequestMapping("/")
     public String jobList(Model model){
         model.addAttribute("jobs", jobRepository.findAll());
         return "index";
     }
+
     @GetMapping("/add")
     public String addJob(Model model){
         model.addAttribute("job", new Job());

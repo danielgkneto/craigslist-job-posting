@@ -24,12 +24,12 @@ public class Job {
         this.postedDate = new Date();
     }
 
-    public Job(String title, String description, String author, String phone, Date postedDate) {
+    public Job(String title, String description, String author, String phone) {
+        this();
         this.title = title;
         this.description = description;
         this.author = author;
         this.phone = phone;
-//        this.postedDate = postedDate;
     }
 
     public long getId() {
